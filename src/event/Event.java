@@ -1,5 +1,10 @@
 package event;
 
+import sun.java2d.pipe.hw.AccelDeviceEventNotifier;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Event {
 
     private EventType type;
@@ -8,6 +13,7 @@ public class Event {
     public Event(String name, EventType type){
         this.name = name;
         this.type = type;
+
     }
 
     public EventType getType() {
