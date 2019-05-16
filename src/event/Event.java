@@ -5,15 +5,19 @@ import sun.java2d.pipe.hw.AccelDeviceEventNotifier;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Event {
+public class Event implements Comparable<Event>{
 
     private EventType type;
     private String name;
 
+    public Event(EventType type){
+        this.name = "";
+        this.type = type;
+    }
+
     public Event(String name, EventType type){
         this.name = name;
         this.type = type;
-
     }
 
     public EventType getType() {
@@ -36,5 +40,16 @@ public class Event {
     public boolean equals(Object o) {
         Event e = (Event)o;
         return e.getName().equals(this.getName()) && e.getType() == this.getType();
+    }
+
+    @Override
+    public int compareTo(Event o) {
+        if (this.getType() == EventType.ARRIVAL_CLASS_1){
+            return 1;
+        } else if (this.getType() == EventType.ARRIVAL_CLASS_2 && o.getType() == EventType.EOS) {
+            return -1;
+        } else {
+            return 0;
+        }
     }
 }
